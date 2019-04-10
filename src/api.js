@@ -1,3 +1,3 @@
-const GET_TODO_BY_ID = (id) => fetch(`https://jsonplaceholder.typicode.com/todos/${id}`) ;
+export const getPostsById = id => fetch(`https://jsonplaceholder.typicode.com/Posts/${id}`);
 
-const GET_TODO_BULK = () => fetch("https://jsonplaceholder.typicode.com/posts");
+export const getPostsBulk = () => fetch("https://jsonplaceholder.typicode.com/posts");

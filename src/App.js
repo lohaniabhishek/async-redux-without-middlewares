@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { connect } from 'react-redux';
+import { getPostByIdFunc, getPostsBulkFunc } from './actions';
 
 class App extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <button onClick={() => {
+          this.props.getPostById(1);
+        }}>By Id</button>
+        <button onClick={() => {
+          this.props.getPostBulk();
+        }}>In bulk</button>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    state
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getPostById: getPostByIdFunc(dispatch),
+    getPostBulk: getPostsBulkFunc(dispatch)
+  }
+};
+
+
+const ConnectedApp = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
+export default ConnectedApp;
